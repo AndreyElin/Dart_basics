@@ -1,7 +1,7 @@
 // Реализуйте метод, который принимает строку слов, разделённых пробелами.
 // Задача — найти в данной строке числа и вернуть коллекцию num этих чисел.
 
-List<int> numbersInString(String text) {
+List<num> numbersInString(String text) {
   List<String> list = text.split(" ");
   List<int> num = [];
   for (var element in list) {

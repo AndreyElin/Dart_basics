@@ -1,20 +1,23 @@
 // Реализуйте методы для преобразования целых чисел
 // из десятичной системы в двоичную и обратно.
 
-int convertBinaryToDecimal(int binaryNumber) {
-  int decimalNumber = 0;
-  int base = 1;
+import 'dart:math';
 
-  while (binaryNumber > 0) {
-    int lastDigit = binaryNumber % 10;
-    binaryNumber = binaryNumber ~/ 10;
-    decimalNumber += lastDigit * base;
-    base = base * 2;
+int convertBinaryToDecimal(String binaryNumber) {
+  int decimalNumber = 0;
+  int base = 0;
+
+  for (int i = binaryNumber.length; i > 0; i--) {
+    if ((binaryNumber[i - 1] == '1') || (binaryNumber[i - 1] == '0')) {
+      decimalNumber += pow(2, base).toInt() * int.parse(binaryNumber[i - 1]);
+      base++;
+    }
   }
-  return decimalNumber;
+  return (binaryNumber[0] == '-') ? -decimalNumber : decimalNumber;
 }
 
-String? convertDecimalToBinary(int decimalNumber) {
+String convertDecimalToBinary(int decimalNumber) {
+  int minusFlag = decimalNumber;
   if (decimalNumber == 0) {
     return '0';
   }
@@ -26,10 +29,12 @@ String? convertDecimalToBinary(int decimalNumber) {
     decimalNumber ~/= 2;
   }
 
-  return binaryNumber;
+  return (minusFlag > 0) ? binaryNumber : '-$binaryNumber';
 }
 
 void main() {
-  print(convertBinaryToDecimal(1001000));
+  print(convertBinaryToDecimal('1001000'));
+  print(convertBinaryToDecimal('-1001000'));
   print(convertDecimalToBinary(72));
+  print(convertDecimalToBinary(-72));
 }

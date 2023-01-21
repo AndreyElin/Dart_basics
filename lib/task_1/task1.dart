@@ -20,6 +20,19 @@ class DelimitersCalculator {
 
   static List<int> splitsNumberIntoPrimeFactors(int n) {
     List<int> list = [];
+    if (n > 0 && n < 4) {
+      list.add(n);
+      return list;
+    }
+
+    int div = 2;
+    while (n > 1) {
+      while (n % div == 0) {
+        list.add(div);
+        n ~/= div;
+      }
+      div = (div == 2) ? div + 1 : div + 2;
+    }
     return list;
   }
 }
@@ -30,5 +43,5 @@ void main() {
   print(DelimitersCalculator.greatestCommonDivisor(10, 0)); // 10
   print(DelimitersCalculator.greatestCommonDivisor(18, 24)); // 6
   print(DelimitersCalculator.leastCommonMultiple(24, 18)); // 72
-  print(DelimitersCalculator.splitsNumberIntoPrimeFactors(64)); // 72
+  print(DelimitersCalculator.splitsNumberIntoPrimeFactors(64520));
 }
