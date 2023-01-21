@@ -12,12 +12,18 @@ Map<String, int> numberOfOccurrences(List<String> list) {
       map[element] = count;
     }
   }
-  for (var item in map.entries) {
-    print("${item.key} - ${item.value}");
-  }
+
   return map;
 }
 
+void printMap(Map<String, int> map) {
+  for (var item in map.entries) {
+    print("${item.key} - ${item.value}");
+  }
+}
+
 void main() {
-  numberOfOccurrences(['1', '2', '3', '1', '2', '3', '3', 'dog']);
+  Map<String, int> map =
+      numberOfOccurrences(['1', '2', '3', '1', '2', '3', '3', 'dog']);
+  printMap(map);
 }
