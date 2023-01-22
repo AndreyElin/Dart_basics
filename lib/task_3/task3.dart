@@ -5,10 +5,11 @@ List<num> numbersInString(String text) {
   List<String> list = text.split(" ");
   List<num> num1 = [];
   for (var element in list) {
-    if (num.tryParse(element) is num) {
-      num? number = num.tryParse(element);
-      num1.add(number!);
+    num? number = num.tryParse(element);
+    if (number == null) {
+      continue;
     }
+    num1.add(number);
   }
   return num1;
 }
