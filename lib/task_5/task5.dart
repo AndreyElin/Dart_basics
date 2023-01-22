@@ -5,7 +5,7 @@
 // результат: [1, 2, 0]. Если в строке есть слова, не являющиеся цифрами
 // от 0 до 9, пропускайте их.
 
-Set<int?> numbersWithoutRepetitions(List<String> wordsCollection) {
+Set<int> numbersWithoutRepetitions(List<String> wordsCollection) {
   Map<String, int> mapNumber = {
     "zero": 0,
     "one": 1,
@@ -19,10 +19,12 @@ Set<int?> numbersWithoutRepetitions(List<String> wordsCollection) {
     "nine": 9,
   };
 
-  Set<int?> numbersCollection = {};
+  Set<int> numbersCollection = {};
   for (var word in wordsCollection) {
     if (mapNumber.containsKey(word)) {
-      numbersCollection.add(mapNumber[word]);
+      if (mapNumber[word] != null) {
+        numbersCollection.add(mapNumber[word]!);
+      }
     }
   }
   return numbersCollection;
